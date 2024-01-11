@@ -1,6 +1,14 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 export default function Home() {
   const [publicIP, setPublicIP] = useState('');
   useEffect(() => {
@@ -17,15 +25,30 @@ export default function Home() {
   return (
     // add a NavigationMenu component
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1 className="text-6xl font-bold">
-        Your Public IP Address
-      </h1>
-      <p className="mt-3 text-2xl">
-        {publicIP}
-      </p>
-      <p className="mt-3 text-2xl">
-        {publicIPV6}
-      </p>
+      <Card className="w-full max-w-md tex">
+        <CardHeader>
+          <p className="text-2xl text-center text-gray-500">
+          <CardTitle>PublicIP.me</CardTitle>
+          </p>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>
+            <p className="text-sm text-gray-500">
+              Your public IP address is:
+            </p>
+            <p className="text-xl font-bold">{publicIP}</p>
+            <p className="text-sm text-gray-500">
+              Your public IPv6 address is:
+            </p>
+            <p className="text-xl font-bold">{publicIPV6}</p>
+          </CardDescription>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm text-gray-500">
+            No frills, just your public IP address.
+          </p>
+        </CardFooter>
+      </Card>
       </div>
   )
 }
