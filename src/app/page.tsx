@@ -52,17 +52,27 @@ export default function Home() {
         </CardHeader>
         <CardContent>
           <CardDescription>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 py-1">
               Your public IP address is:
             </p>
-            <p className="text-xl font-bold">{publicIP}
-            <Button className="ml-2" onClick={() => handleIPV4Copy()}>{copyButtonTextIPV4}</Button>
+            <p className="text-xl font-bold">
+            <div className="flex flex-row items-center">
+              {publicIP}
+              <Button className="ml-2 px-4 py-2" onClick={() => handleIPV4Copy()}>
+                {copyButtonTextIPV4}
+              </Button>
+            </div>
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 py-1">
               Your public IPv6 address is:
             </p>
-            <p className="text-xl font-bold">{publicIPV6}
-            <Button className="ml-2" onClick={() => handleIPV6Copy()}>{copyButtonTextIPV6}</Button>
+            <p className="text-xl font-bold">
+            <div className="flex flex-row items-center">
+              {publicIPV6}
+              <Button className="ml-2 px-4 py-2" onClick={() => handleIPV6Copy()}>
+                {copyButtonTextIPV6}
+              </Button>
+            </div>
             </p>
           </CardDescription>
         </CardContent>
@@ -72,7 +82,7 @@ export default function Home() {
           </p>
         </CardFooter>
       </Card>
-      </div>
+    </div>
   )
 }
 
