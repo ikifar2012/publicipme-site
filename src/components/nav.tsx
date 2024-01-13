@@ -6,6 +6,7 @@ import * as React from "react"
 function SiteNavigationMenu() {
         return (
 // wrap this in a translucent bar to make it sticky full width
+
 <div className={styles.menuBar}>
 <nav>
   <ul>

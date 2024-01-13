@@ -9,31 +9,35 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { SiteNavigationMenu } from "@/components/nav"
+
 export default function Home() {
-  const [publicIP, setPublicIP] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [publicIP, setPublicIP] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.ipify.org?format=json');
       const data = await response.json();
       setPublicIP(data.ip);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
 
-  const [publicIPV6, setPublicIPV6] = useState('');
+  const [loadingIPV6, setLoadingIPV6] = useState(true);
+  const [publicIPV6, setPublicIPV6] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api64.ipify.org?format=json');
       const data = await response.json();
       setPublicIPV6(data.ip);
+      setLoadingIPV6(false);
     };
     fetchData();
   }, []);
   const [copyButtonTextIPV4, setCopyButtonTextIPV4] = useState('Copy');
   const handleIPV4Copy = () => {
-    navigator.clipboard.writeText(publicIP);
+    navigator.clipboard.writeText(publicIP || '');
     setCopyButtonTextIPV4('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
@@ -43,49 +47,48 @@ export default function Home() {
 
   const [copyButtonTextIPV6, setCopyButtonTextIPV6] = useState('Copy');
   const handleIPV6Copy = () => {
-    navigator.clipboard.writeText(publicIPV6);
+      navigator.clipboard.writeText(publicIPV6 || '');
     setCopyButtonTextIPV6('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
       setCopyButtonTextIPV6('Copy');
     }, 3000);
   }
+
+
   return (
     // add black bar across top
-    <><header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <SiteNavigationMenu />
-    </header>
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <Card>
           <CardHeader>
-            <p className="text-2xl text-center text-gray-500">
-              <CardTitle>PublicIP.me</CardTitle>
-            </p>
+              <CardTitle className="text-2xl text-center text-gray-500">
+                PublicIP.me
+              </CardTitle>
           </CardHeader>
           <CardContent>
             <CardDescription>
               <p className="text-sm text-gray-500 py-1">
                 Your public IP address is:
               </p>
-              <p className="text-xl font-bold">
-                <div className="flex flex-row items-center">
-                  {publicIP}
-                  <Button className="ml-2 px-4 py-2" onClick={() => handleIPV4Copy()}>
-                    {copyButtonTextIPV4}
-                  </Button>
-                </div>
-              </p>
+              <span className="text-xl font-bold">
+              <div className="flex flex-row items-center">
+                {publicIP}
+                <Button className="ml-2 px-4 py-2" onClick={() => handleIPV4Copy()}>
+                  {copyButtonTextIPV4}
+                </Button>
+              </div>
+            </span>
               <p className="text-sm text-gray-500 py-1">
                 Your public IPv6 address is:
               </p>
-              <p className="text-xl font-bold">
+              <span className="text-xl font-bold">
                 <div className="flex flex-row items-center">
                   {publicIPV6}
                   <Button className="ml-2 px-4 py-2" onClick={() => handleIPV6Copy()}>
                     {copyButtonTextIPV6}
                   </Button>
                 </div>
-              </p>
+              </span>
             </CardDescription>
           </CardContent>
           <CardFooter>
@@ -94,7 +97,7 @@ export default function Home() {
             </p>
           </CardFooter>
         </Card>
-      </div></>
+      </div>
   )
 }
 

@@ -8,25 +8,22 @@ export const metadata: Metadata = {
   title: 'PublicIP.me - Your Public IP Address',
   description: 'No frills, just your public IP address.',
 }
-import { ThemeProvider } from "@/components/theme-provider"
 
+import { ThemeProvider } from "@/components/theme-provider"
+import { SiteNavigationMenu } from '@/components/nav'
 
 export default function RootLayout({
   children,
 }: {
-
   children: React.ReactNode
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            >
-              {children}
-            </ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <SiteNavigationMenu />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
