@@ -1,0 +1,42 @@
+/* styles/MenuBar.module.css */
+
+.menuBar {
+    background-color: #101010; /* Adjust the alpha value for transparency */
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+  }
+  
+  .menuBar nav {
+    /* Adding a local class to satisfy the pure selector requirement */
+  }
+  
+  .menuBar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .menuBar nav ul li {
+    cursor: pointer;
+  }
+  
+  .menuBar nav ul li a {
+    text-decoration: none;
+    color: #FFFFFF; /* Adjust the color based on your design */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease; /* Optional: Add a smooth color transition on hover */
+  }
+  
+  .menuBar nav ul li a:hover {
+    color: #828282; /* Adjust the color for the hover state */
+  }
+  

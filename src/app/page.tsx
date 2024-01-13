@@ -13,15 +13,23 @@ import { SiteNavigationMenu } from "@/components/nav"
 export default function Home() {
   const [publicIP, setPublicIP] = useState('');
   useEffect(() => {
-    fetch('https://api.ipify.org?format=json')
-      .then((response) => response.json())
-      .then((data) => setPublicIP(data.ip));
+    const fetchData = async () => {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      setPublicIP(data.ip);
+    };
+
+    fetchData();
   }, []);
+
   const [publicIPV6, setPublicIPV6] = useState('');
   useEffect(() => {
-    fetch('https://api64.ipify.org?format=json')
-      .then((response) => response.json())
-      .then((data) => setPublicIPV6(data.ip));
+    const fetchData = async () => {
+      const response = await fetch('https://api64.ipify.org?format=json');
+      const data = await response.json();
+      setPublicIPV6(data.ip);
+    };
+    fetchData();
   }, []);
   const [copyButtonTextIPV4, setCopyButtonTextIPV4] = useState('Copy');
   const handleIPV4Copy = () => {
@@ -44,9 +52,10 @@ export default function Home() {
   }
   return (
     // add black bar across top
-    <><div className="bg-black w-full h-auto">
+    <><header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <SiteNavigationMenu />
-    </div><div className="flex flex-col items-center justify-center min-h-screen py-2">
+    </header>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <Card>
           <CardHeader>
             <p className="text-2xl text-center text-gray-500">
