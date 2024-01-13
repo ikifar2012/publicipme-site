@@ -67,9 +67,9 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <CardDescription>
-              <p className="text-sm text-gray-500 py-1">
+              <div className="text-sm text-gray-500 py-1">
                 Your public IP address is:
-              </p>
+              </div>
               <span className="text-xl font-bold">
               <div className="flex flex-row items-center">
                 {publicIP}
@@ -78,9 +78,9 @@ export default function Home() {
                 </Button>
               </div>
             </span>
-              <p className="text-sm text-gray-500 py-1">
+              <div className="text-sm text-gray-500 py-1">
                 Your public IPv6 address is:
-              </p>
+              </div>
               <span className="text-xl font-bold">
                 <div className="flex flex-row items-center">
                   {publicIPV6}
@@ -91,10 +91,8 @@ export default function Home() {
               </span>
             </CardDescription>
           </CardContent>
-          <CardFooter>
-            <p className="text-sm text-gray-500">
+          <CardFooter className="text-sm text-gray-500">
               No frills, just your public IP address.
-            </p>
           </CardFooter>
         </Card>
       </div>
