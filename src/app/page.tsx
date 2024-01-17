@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     // add black bar across top
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <main className="flex flex-col items-center justify-center min-h-screen py-2">
         <Card>
           <CardHeader>
               <CardTitle className="text-2xl text-center text-gray-500">
@@ -95,7 +95,7 @@ export default function Home() {
               No frills, just your public IP address.
           </CardFooter>
         </Card>
-      </div>
+      </main>
   )
 }
 
