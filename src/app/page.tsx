@@ -9,16 +9,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [publicIP, setPublicIP] = useState(null);
+  const [publicIPV4, setPublicIPV4] = useState(null);
+  const [loadingIPV4, setLoadingIPV4] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.ipify.org?format=json');
       const data = await response.json();
-      setPublicIP(data.ip);
-      setLoading(false);
+      setPublicIPV4(data.ip);
+      setLoadingIPV4(false);
     };
 
     fetchData();
@@ -37,7 +38,7 @@ export default function Home() {
   }, []);
   const [copyButtonTextIPV4, setCopyButtonTextIPV4] = useState('Copy');
   const handleIPV4Copy = () => {
-    navigator.clipboard.writeText(publicIP || '');
+    navigator.clipboard.writeText(publicIPV4 || '');
     setCopyButtonTextIPV4('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
@@ -55,7 +56,6 @@ export default function Home() {
     }, 3000);
   }
 
-
   return (
     // add black bar across top
     <main className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -72,7 +72,10 @@ export default function Home() {
               </div>
               <span className="text-xl font-bold">
               <div className="flex flex-row items-center">
-                {publicIP}
+              { loadingIPV4 ?  
+                  <Skeleton className="w-[147px] h-8">
+                    </Skeleton> : publicIPV4
+                  }
                 <Button className="ml-2 px-4 py-2" onClick={() => handleIPV4Copy()}>
                   {copyButtonTextIPV4}
                 </Button>
@@ -83,7 +86,10 @@ export default function Home() {
               </div>
               <span className="text-xl font-bold">
                 <div className="flex flex-row items-center">
-                  {publicIPV6}
+                  { loadingIPV6 ?  
+                  <Skeleton className="w-[430px] h-8">
+                    </Skeleton> : publicIPV6
+                  }
                   <Button className="ml-2 px-4 py-2" onClick={() => handleIPV6Copy()}>
                     {copyButtonTextIPV6}
                   </Button>
