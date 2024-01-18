@@ -38,13 +38,32 @@ export default function Page() {
         <TabsContent value="ip">
           <form className="flex flex-col gap-4">
             <div className="flex flex-row gap-4 justify-center">
-            <Button>Use My IPV4</Button>
-            <Button>Use My IPV6</Button>
-            </div>
-
-            <Input placeholder="Search by IP" type="number" />
+      <Tabs className="w-full max-w-md" defaultValue="none">
+        <TabsList className="flex justify-center gap-4">
+          <TabsTrigger value="none">Custom</TabsTrigger>
+          <TabsTrigger value="IPV4">Copy my IPV4</TabsTrigger>
+          <TabsTrigger value="IPV6">Copy my IPV6</TabsTrigger>
+        </TabsList>
+        <TabsContent value="none">
+          <form className="flex flex-col gap-4">
+            <Input placeholder="Search by IP" type="text" />
             <Button>Search</Button>
-           
+          </form>
+        </TabsContent>
+        <TabsContent value="IPV4">
+          <form className="flex flex-col gap-4">
+            <Input placeholder="Search by IP" type="text" />
+            <Button>Search</Button>
+          </form>
+        </TabsContent>
+        <TabsContent value="IPV6">
+          <form className="flex flex-col gap-4">
+            <Input placeholder="Search by IP" type="text" />
+            <Button>Search</Button>
+          </form>
+        </TabsContent>
+      </Tabs>
+            </div>
           </form>
         </TabsContent>
       </Tabs>
