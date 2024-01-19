@@ -1,20 +1,38 @@
+"use client"
 import { Card, CardContent,CardTitle,CardDescription, CardHeader, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input";
-async function getIP() {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-    }
-async function getIPV6() {
-    const response = await fetch('https://api64.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-    }
+import { useEffect, useState } from "react";
+import { IpAddressInput } from "@/components/ip-validate";
+
 
 export default function Page() {
     console.log("lookup page")
+    const [publicIPV4, setPublicIPV4] = useState('');
+    const [loadingIPV4, setLoadingIPV4] = useState(true);
+    useEffect(() => {
+      const fetchData = async () => {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        setPublicIPV4(data.ip);
+        setLoadingIPV4(false);
+      };
+  
+      fetchData();
+    }, []);
+  
+    const [loadingIPV6, setLoadingIPV6] = useState(true);
+    const [publicIPV6, setPublicIPV6] = useState('');
+    useEffect(() => {
+      const fetchData = async () => {
+        const response = await fetch('https://api64.ipify.org?format=json');
+        const data = await response.json();
+        setPublicIPV6(data.ip);
+        setLoadingIPV6(false);
+      };
+      fetchData();
+    }, []);
     return (
     <main className="flex flex-col items-center justify-center min-h-screen py-2">
       <Tabs className="w-full max-w-md" defaultValue="domain">
@@ -46,19 +64,19 @@ export default function Page() {
         </TabsList>
         <TabsContent value="none">
           <form className="flex flex-col gap-4">
-            <Input placeholder="Search by IP" type="text" />
+            <IpAddressInput />
             <Button>Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="IPV4">
           <form className="flex flex-col gap-4">
-            <Input placeholder="Search by IP" type="text" />
+            <IpAddressInput value={publicIPV4} />
             <Button>Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="IPV6">
           <form className="flex flex-col gap-4">
-            <Input placeholder="Search by IP" type="text" />
+            <IpAddressInput value={publicIPV6} />
             <Button>Search</Button>
           </form>
         </TabsContent>
