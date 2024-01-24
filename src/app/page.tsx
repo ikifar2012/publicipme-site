@@ -31,7 +31,7 @@ export default function Home() {
     const fetchData = async () => {
       const response = await fetch('https://api64.ipify.org?format=json');
       const data = await response.json();
-      setPublicIPV6(data.ip);
+      setPublicIPV6(data.ip === publicIPV4 ? 'Not available' : data.ip);
       setLoadingIPV6(false);
     };
     fetchData();
@@ -89,7 +89,7 @@ export default function Home() {
                   { loadingIPV6 ?  
                   <Skeleton className="w-[430px] h-8">
                     </Skeleton> : publicIPV6
-                  }
+                    }
                   <Button className="ml-2 px-4 py-2" onClick={() => handleIPV6Copy()}>
                     {copyButtonTextIPV6}
                   </Button>
