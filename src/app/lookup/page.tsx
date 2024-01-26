@@ -18,7 +18,6 @@ export default function Page() {
         setPublicIPV4(data.ip);
         setLoadingIPV4(false);
       };
-  
       fetchData();
     }, []);
   
@@ -33,6 +32,18 @@ export default function Page() {
       };
       fetchData();
     }, []);
+const [LookupData, setLookupData] = useState('');
+const [loadingLookupData, setLoadingLookupData] = useState(true);
+
+async function Lookup(e: any) {
+  e.preventDefault();
+  console.log("lookup function")
+  console.log(LookupData)
+  const response = await fetch('https://api64.ipify.org?format=json');
+  const data = await response.json();
+  console.log(data)
+}
+
     return (
     <main className="flex flex-col items-center justify-center min-h-screen py-2">
       <Tabs className="w-full max-w-md" defaultValue="domain">
@@ -54,8 +65,7 @@ export default function Page() {
           </form>
         </TabsContent>
         <TabsContent value="ip">
-          <form className="flex flex-col gap-4">
-            <div className="flex flex-row gap-4 justify-center">
+            <section className="flex flex-row gap-4 justify-center">
       <Tabs className="w-full max-w-md" defaultValue="none">
         <TabsList className="flex justify-center gap-4">
           <TabsTrigger value="none">Custom</TabsTrigger>
@@ -63,15 +73,15 @@ export default function Page() {
           <TabsTrigger value="IPV6">Copy my IPV6</TabsTrigger>
         </TabsList>
         <TabsContent value="none">
-          <form className="flex flex-col gap-4">
-            <IpAddressInput />
-            <Button>Search</Button>
+          <form className="flex flex-col gap-4" onSubmit={Lookup} >
+            <IpAddressInput onChange={(e) => setLookupData(e.target.value)} />
+            <Button type="submit">Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="IPV4">
           <form className="flex flex-col gap-4">
             <IpAddressInput value={publicIPV4} />
-            <Button>Search</Button>
+            <Button type="submit">Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="IPV6">
@@ -81,11 +91,10 @@ export default function Page() {
           </form>
         </TabsContent>
       </Tabs>
-            </div>
-          </form>
+            </section>
         </TabsContent>
       </Tabs>
-      <div className="w-full max-w-md mt-8">
+      <section className="w-full max-w-md mt-8">
         <Card>
           <CardHeader>
             <CardTitle>Search Results</CardTitle>
@@ -94,7 +103,7 @@ export default function Page() {
             <p className="text-gray-500 dark:text-gray-400">Your search results will appear here.</p>
           </CardContent>
         </Card>
-      </div>
+      </section>
     </main>
           )
 }

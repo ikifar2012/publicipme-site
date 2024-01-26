@@ -10,11 +10,11 @@ const validateIpAddress = (value:any) => {
 };
 
 
-interface IpAddressInputProps {
-  value?: string;
-}
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const IpAddressInput: React.FC<IpAddressInputProps> = ({ value }) => {
+
+const IpAddressInput: React.FC<InputProps> = ({ value }) => {
   const [ipAddress, setIpAddress] = useState(value);
   const [isValid, setIsValid] = useState(true);
 
@@ -27,6 +27,7 @@ const IpAddressInput: React.FC<IpAddressInputProps> = ({ value }) => {
     setIpAddress(value);
 
     const isValidIpAddress = validateIpAddress(value);
+    console.log(isValidIpAddress);
     setIsValid(isValidIpAddress);
   };
 
@@ -38,7 +39,6 @@ const IpAddressInput: React.FC<IpAddressInputProps> = ({ value }) => {
         onChange={handleInputChange}
         style={{ outlineColor: isValid ? '' : 'red' }}
         placeholder='Search by IP'
-        pattern='^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$'
       />
       {!isValid && <Label style={{ color: 'red' }}>Invalid IP Address</Label>}
     </div>
