@@ -5,10 +5,10 @@ import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { IpAddressInput } from "@/components/ip-validate";
+import { Lookup } from "@/components/lookup";
 
 
 export default function Page() {
-    console.log("lookup page")
     const [publicIPV4, setPublicIPV4] = useState('');
     const [loadingIPV4, setLoadingIPV4] = useState(true);
     useEffect(() => {
@@ -33,15 +33,18 @@ export default function Page() {
       fetchData();
     }, []);
 const [LookupData, setLookupData] = useState('');
-const [loadingLookupData, setLoadingLookupData] = useState(true);
+const [LookupType, setLookupType] = useState('');
 
-async function Lookup(e: any) {
-  e.preventDefault();
-  console.log("lookup function")
-  console.log(LookupData)
-  const response = await fetch('https://api64.ipify.org?format=json');
-  const data = await response.json();
-  console.log(data)
+const LookupServerSide = async (e: any) => {
+    e.preventDefault();
+    setLookupData(e.target[0].value);
+    setLookupType(e.target.name);
+
+  // get the lookup type from the form name
+    console.log(LookupType);
+    const result = await Lookup(LookupData, LookupType);
+    console.log(result);
+    return result;
 }
 
     return (
@@ -53,14 +56,14 @@ async function Lookup(e: any) {
           <TabsTrigger value="ip">IP</TabsTrigger>
         </TabsList>
         <TabsContent value="domain">
-          <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="domain" >
             <Input placeholder="Search by domain" type="text" />
             <Button>Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="email">
-          <form className="flex flex-col gap-4">
-            <Input placeholder="Search by email" type="email" />
+        <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="email" >
+            <Input placeholder="Search by email" type="submit" />
             <Button>Search</Button>
           </form>
         </TabsContent>
@@ -73,21 +76,21 @@ async function Lookup(e: any) {
           <TabsTrigger value="IPV6">Copy my IPV6</TabsTrigger>
         </TabsList>
         <TabsContent value="none">
-          <form className="flex flex-col gap-4" onSubmit={Lookup} >
-            <IpAddressInput onChange={(e) => setLookupData(e.target.value)} />
+          <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="ip" >
+            <IpAddressInput type="submit"/>
             <Button type="submit">Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="IPV4">
-          <form className="flex flex-col gap-4">
-            <IpAddressInput value={publicIPV4} />
+        <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="ip" >
+            <IpAddressInput value={publicIPV4} type="submit"/>
             <Button type="submit">Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="IPV6">
-          <form className="flex flex-col gap-4">
-            <IpAddressInput value={publicIPV6} />
-            <Button>Search</Button>
+        <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="ip" >
+            <IpAddressInput value={publicIPV6}/>
+            <Button type="submit">Search</Button>
           </form>
         </TabsContent>
       </Tabs>
