@@ -35,7 +35,7 @@ export default function Home() {
       setLoadingIPV6(false);
     };
     fetchData();
-  }, []);
+  }, [publicIPV4]);
   const [copyButtonTextIPV4, setCopyButtonTextIPV4] = useState('Copy');
   const handleIPV4Copy = () => {
     navigator.clipboard.writeText(publicIPV4 || '');
