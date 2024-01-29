@@ -36,9 +36,9 @@ const [LookupData, setLookupData] = useState('');
 const [LookupType, setLookupType] = useState('');
 
 const LookupServerSide = async (e: any) => {
-    e.preventDefault();
-    setLookupData(e.target[0].value);
-    setLookupType(e.target.name);
+  e.preventDefault();
+  setLookupData(e.target[0].value);
+  setLookupType(e.target.name);
 
   // get the lookup type from the form name
     console.log(LookupType);
