@@ -10,39 +10,33 @@ import { Lookup } from "@/components/lookup";
 
 export default function Page() {
     const [publicIPV4, setPublicIPV4] = useState('');
-    const [loadingIPV4, setLoadingIPV4] = useState(true);
     useEffect(() => {
       const fetchData = async () => {
         const response = await fetch('https://api.ipify.org?format=json');
         const data = await response.json();
         setPublicIPV4(data.ip);
-        setLoadingIPV4(false);
       };
       fetchData();
     }, []);
   
-    const [loadingIPV6, setLoadingIPV6] = useState(true);
     const [publicIPV6, setPublicIPV6] = useState('');
     useEffect(() => {
       const fetchData = async () => {
         const response = await fetch('https://api64.ipify.org?format=json');
         const data = await response.json();
         setPublicIPV6(data.ip);
-        setLoadingIPV6(false);
       };
       fetchData();
     }, []);
-const [LookupData, setLookupData] = useState('');
-const [LookupType, setLookupType] = useState('');
+
 
 const LookupServerSide = async (e: any) => {
-  e.preventDefault();
-  setLookupData(e.target[0].value);
-  setLookupType(e.target.name);
+    e.preventDefault();
+    const lookupType = await e.target.name;
+    const lookupData = await e.target[0].value;
 
   // get the lookup type from the form name
-    console.log(LookupType);
-    const result = await Lookup(LookupData, LookupType);
+    const result = await Lookup(lookupData, lookupType);
     console.log(result);
     return result;
 }
@@ -57,7 +51,7 @@ const LookupServerSide = async (e: any) => {
         </TabsList>
         <TabsContent value="domain">
         <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="domain" >
-            <Input placeholder="Search by domain" type="text" />
+            <Input placeholder="Search by domain" type="submit" />
             <Button>Search</Button>
           </form>
         </TabsContent>
@@ -89,7 +83,7 @@ const LookupServerSide = async (e: any) => {
         </TabsContent>
         <TabsContent value="IPV6">
         <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="ip" >
-            <IpAddressInput value={publicIPV6}/>
+            <IpAddressInput value={publicIPV6} type="submit"/>
             <Button type="submit">Search</Button>
           </form>
         </TabsContent>
