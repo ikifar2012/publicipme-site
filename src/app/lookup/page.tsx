@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { IpAddressInput } from "@/components/ip-validate";
 import { Lookup } from "@/components/lookup";
+import { addDataToDB } from "@/components/save-data";
 
 
 export default function Page() {
@@ -37,6 +38,8 @@ const LookupServerSide = async (e: any) => {
 
   // get the lookup type from the form name
     const result = await Lookup(lookupData, lookupType);
+    // add the result to the database
+    await addDataToDB(result);
     console.log(result);
     return result;
 }
@@ -52,13 +55,13 @@ const LookupServerSide = async (e: any) => {
         <TabsContent value="domain">
         <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="domain" >
             <Input placeholder="Search by domain" type="submit" />
-            <Button>Search</Button>
+            <Button type="submit">Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="email">
         <form className="flex flex-col gap-4" onSubmit={LookupServerSide} name="email" >
             <Input placeholder="Search by email" type="submit" />
-            <Button>Search</Button>
+            <Button type="submit">Search</Button>
           </form>
         </TabsContent>
         <TabsContent value="ip">
