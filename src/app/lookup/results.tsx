@@ -18,7 +18,6 @@ export function DialogResults() {
             Results of your search
           </DialogDescription>
         </DialogHeader>
-        
         <DialogFooter>
           <Button type="submit">Close</Button>
         </DialogFooter>

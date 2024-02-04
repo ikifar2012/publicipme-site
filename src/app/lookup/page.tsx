@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { IpAddressInput } from "@/components/ip-validate";
-import { Lookup } from "@/components/lookup";
-import { addDataToDB } from "@/components/save-data";
+import { IpAddressInput } from "./ip-validate";
+import { Lookup } from "./lookup";
+import { addDataToDB } from "./save-data";
 
 
 export default function Page() {

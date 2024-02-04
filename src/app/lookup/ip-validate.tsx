@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Label } from './ui/label';
-import { Input } from './ui/input';
+import { Label } from '../../components/ui/label';
+import { Input } from '../../components/ui/input';
 
 const validateIpAddress = (value:any) => {
   const ipv4Regex = /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.((25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.){2}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$/;
