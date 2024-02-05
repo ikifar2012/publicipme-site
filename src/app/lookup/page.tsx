@@ -1,5 +1,5 @@
 "use client"
-import ResultsCard from "./lookup-results-card";
+import Results from "./results";
 import { Card, CardContent, CardTitle, CardDescription, CardHeader, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs"
@@ -46,6 +46,7 @@ const LookupServerSide = async (e: any) => {
 }
 
     return (
+      <>
     <main className="flex flex-col items-center justify-center min-h-screen py-2">
       <Tabs className="w-full max-w-md" defaultValue="domain">
         <TabsList className="flex justify-center gap-4">
@@ -95,15 +96,8 @@ const LookupServerSide = async (e: any) => {
             </section>
         </TabsContent>
       </Tabs>
-        <Card className="w-full mt-8 rounded-none border-none">
-          <CardHeader>
-            <CardTitle>Search Results</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* <p className="text-gray-500 dark:text-gray-400">Your search results will appear here.</p> */}
-            <ResultsCard ip="192.168.0.1" location="New York, NY" isp="Comcast" lookupTime="2021-10-10 12:00:00" />
-          </CardContent>
-        </Card>
     </main>
+          <Results />
+      </>
           )
 }

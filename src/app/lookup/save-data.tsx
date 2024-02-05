@@ -26,5 +26,7 @@ export const getAllDataFromDB = async () => {
   const db = await openDatabase();
   const tx = db.transaction(storeName, 'readonly');
   const store = tx.objectStore(storeName);
-  return store.getAll();
+  const data = await store.getAll() as any[] || [] as any[];
+  await tx.done;
+  return data;
 };

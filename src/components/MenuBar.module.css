@@ -4,7 +4,7 @@
     background-color: #101010; /* Adjust the alpha value for transparency */
     padding: 20px;
     backdrop-filter: blur(10px); /* Apply a blur effect to the background */
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
