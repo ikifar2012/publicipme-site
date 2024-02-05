@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
-export function DialogResults() {
+export default function DialogResults() {
   return (
     <Dialog>
       <DialogContent className="sm:max-w-[425px]">

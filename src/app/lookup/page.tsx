@@ -1,5 +1,6 @@
 "use client"
-import { Card, CardContent,CardTitle,CardDescription, CardHeader, CardFooter } from "@/components/ui/card";
+import ResultsCard from "./lookup-results-card";
+import { Card, CardContent, CardTitle, CardDescription, CardHeader, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input";
@@ -94,16 +95,15 @@ const LookupServerSide = async (e: any) => {
             </section>
         </TabsContent>
       </Tabs>
-      <section className="w-full max-w-md mt-8">
-        <Card>
+        <Card className="w-full mt-8 rounded-none border-none">
           <CardHeader>
             <CardTitle>Search Results</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-500 dark:text-gray-400">Your search results will appear here.</p>
+            {/* <p className="text-gray-500 dark:text-gray-400">Your search results will appear here.</p> */}
+            <ResultsCard ip="192.168.0.1" location="New York, NY" isp="Comcast" lookupTime="2021-10-10 12:00:00" />
           </CardContent>
         </Card>
-      </section>
     </main>
           )
 }
