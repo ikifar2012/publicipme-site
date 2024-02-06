@@ -57,7 +57,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen overflow-none max-w-screen-md">
+    <main className="flex flex-col items-center justify-center h-screen">
         <Card>
           <CardHeader>
               <CardTitle className="text-2xl text-center text-gray-500">
