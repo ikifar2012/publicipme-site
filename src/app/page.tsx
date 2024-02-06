@@ -57,8 +57,7 @@ export default function Home() {
   }
 
   return (
-    // add black bar across top
-    <main className="flex flex-col items-center justify-center h-screen overflow-auto">
+    <main className="flex flex-col items-center justify-center h-screen overflow-none max-w-screen-md">
         <Card>
           <CardHeader>
               <CardTitle className="text-2xl text-center text-gray-500">
