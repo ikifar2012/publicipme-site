@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center h-screen">
-        <Card>
+        <Card className="w-full max-w-md">
           <CardHeader>
               <CardTitle className="text-2xl text-center text-gray-500">
                 PublicIP.me
@@ -87,9 +87,11 @@ export default function Home() {
                 <div className="flex flex-row items-center">
                   { loadingIPV6 ?  
                   <Skeleton className="w-[430px] h-8">
-                    </Skeleton> : publicIPV6
+                    </Skeleton> : <div className="flex flex-col overflow-y-scroll">
+                      {publicIPV6}
+                    </div>
                     }
-                  <Button className="ml-2 px-4 py-2" onClick={() => handleIPV6Copy()}>
+                  <Button className="ml-2 px-4" onClick={() => handleIPV6Copy()}>
                     {copyButtonTextIPV6}
                   </Button>
                 </div>
