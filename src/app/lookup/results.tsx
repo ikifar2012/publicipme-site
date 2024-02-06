@@ -17,7 +17,7 @@ export default function Results() {
         fetchData();
     }, []);
     return (
-        <Card className="w-full mt-8 rounded-none border-none min-h-2.5 bottom-0">
+        <Card className="w-full rounded-none border-none min-h-2.5 bottom-0">
           <CardHeader>
             <CardTitle>Search Results</CardTitle>
           </CardHeader>
