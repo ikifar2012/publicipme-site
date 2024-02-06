@@ -9,7 +9,9 @@ import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card }
 interface ResultsCardProps {
   ip: string;
   lookupTime: string;
-  location: object;
+  location: {
+    city: string;
+  };
   isp: string;
 }
 export default function ResultsCard(props: ResultsCardProps) {

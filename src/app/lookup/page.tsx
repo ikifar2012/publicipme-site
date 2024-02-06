@@ -47,7 +47,7 @@ const LookupServerSide = async (e: any) => {
 
     return (
       <>
-    <main className="flex flex-col items-center justify-center min-h-screen py-2">
+    <main className="flex flex-col items-center justify-center h-screen overflow-auto">
       <Tabs className="w-full max-w-md" defaultValue="domain">
         <TabsList className="flex justify-center gap-4">
           <TabsTrigger value="domain">Domain</TabsTrigger>
@@ -97,7 +97,10 @@ const LookupServerSide = async (e: any) => {
         </TabsContent>
       </Tabs>
     </main>
-          <Results />
+    <section className="flex flex-row justify-center bottom-0">
+        Scroll to see results
+    </section>
+    <Results />
       </>
           )
 }
