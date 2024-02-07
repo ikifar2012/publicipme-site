@@ -1,6 +1,5 @@
 "use client"
 import Results from "./results";
-import { Card, CardContent, CardTitle, CardDescription, CardHeader, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input";
@@ -8,6 +7,7 @@ import { useEffect, useState } from "react";
 import { IpAddressInput } from "./ip-validate";
 import { Lookup } from "./lookup";
 import { addDataToDB } from "./save-data";
+import revalidateResults from "./revalidate-results";
 
 
 export default function Page() {

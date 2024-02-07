@@ -1,8 +1,11 @@
 
-import { getAllDataFromDB } from "./save-data";
+import { getAllDataFromDB, clearAllDataFromDB } from "./save-data";
 import { useEffect, useState } from "react";
 import ResultsCard from "./lookup-results-card";
 import { Card,CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { TrashIcon } from "lucide-react";
+import revalidateResults from "./revalidate-results";
 
 
 export default function Results() {
@@ -11,6 +14,8 @@ export default function Results() {
     useEffect(() => {
         const fetchData = async () => {
             const data = await getAllDataFromDB();
+            // sort the data descending 
+            data.sort((a, b) => b.lookupTime - a.lookupTime);
             setResults(data);
             setLoading(false);
         };
@@ -20,6 +25,13 @@ export default function Results() {
         <Card className="w-full rounded-none border-none min-h-2.5 bottom-0">
           <CardHeader>
             <CardTitle>Search Results</CardTitle>
+            <Button variant="destructive" className="ml-auto" onPointerDown={
+                async () => {
+                    await clearAllDataFromDB();
+                    setResults([]);
+                    await revalidateResults();
+                }
+            }><TrashIcon className="mr-2 h-4 w-4"/>Clear All </Button>
           </CardHeader>
           <CardContent>
 {           loading && <p>Loading...</p>}

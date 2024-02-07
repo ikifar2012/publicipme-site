@@ -1,6 +1,5 @@
 // utils/indexedDB.js
 import { openDB } from 'idb';
-
 const dbName = 'LookupDataDB';
 const storeName = 'LookupDataStore';
 
@@ -14,10 +13,12 @@ export const openDatabase = async () => {
   });
 };
 
-export const addDataToDB = async (data: String) => {
+export const addDataToDB = async (data: any) => {
   const db = await openDatabase();
   const tx = db.transaction(storeName, 'readwrite');
   const store = tx.objectStore(storeName);
+  // add lookup time to the data
+  data.lookupTime = Date.now().toString();
   await store.add(data);
   await tx.done;
 };
@@ -30,3 +31,10 @@ export const getAllDataFromDB = async () => {
   await tx.done;
   return data;
 };
+export const clearAllDataFromDB = async () => {
+  const db = await openDatabase();
+  const tx = db.transaction(storeName, 'readwrite');
+  const store = tx.objectStore(storeName);
+  await store.clear();
+  await tx.done;
+}

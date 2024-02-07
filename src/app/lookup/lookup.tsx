@@ -29,10 +29,8 @@ async function geolocateIpAddress(ipAddress: string,  type: string) {
     const url = `https://geo.ipify.org/api/v1?apiKey=${apiKey}&${lookuptype}=${ipAddress}`;
 
     try {
-        console.log(url);
         const response = await fetch(url);
-        const data = response.json();
-        console.log(data);
+        const data = await response.json();
         return data;
     } catch (error: any) {
         console.error('Error:', error.message);
