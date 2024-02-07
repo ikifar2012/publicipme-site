@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Label } from '../../components/ui/label';
 import { Input } from '../../components/ui/input';
 import {z} from 'zod';
-const validateIpAddress = (value:any) => {
-  const ipAddressSchema = z.string().ip();
+const validateDomain = (value:any) => {
+  const DomainSchema = z.string().url();
   try {
-    ipAddressSchema.parse(value);
+    DomainSchema.parse(value);
     return true;
   } catch (error) {
     return false;
@@ -17,35 +17,35 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 
-const IpAddressInput: React.FC<InputProps> = ({ value }) => {
-  const [ipAddress, setIpAddress] = useState(value);
+const DomainInput: React.FC<InputProps> = ({ value }) => {
+  const [Domain, setDomain] = useState(value);
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
-    setIpAddress(value);
+    setDomain(value);
   }, [value]);
 
   const handleInputChange = (event:any) => {
     const value = event.target.value;
-    setIpAddress(value);
+    setDomain(value);
 
-    const isValidIpAddress = validateIpAddress(value);
-    console.log(isValidIpAddress);
-    setIsValid(isValidIpAddress);
+    const isValidDomain = validateDomain(value);
+    console.log(isValidDomain);
+    setIsValid(isValidDomain);
   };
 
   return (
     <div>
       <Input
         type="text"
-        value={ipAddress}
+        value={Domain}
         onChange={handleInputChange}
         style={{ outlineColor: isValid ? '' : 'red' }}
-        placeholder='Search by IP'
+        placeholder='Search by Domain'
       />
-      {!isValid && <Label style={{ color: 'red' }}>Invalid IP Address</Label>}
+      {!isValid && <Label style={{ color: 'red' }}>Invalid Domain Address</Label>}
     </div>
   );
 };
 
-export {IpAddressInput};
+export {DomainInput};

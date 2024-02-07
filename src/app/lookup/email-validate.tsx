@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Label } from '../../components/ui/label';
 import { Input } from '../../components/ui/input';
 import {z} from 'zod';
-const validateIpAddress = (value:any) => {
-  const ipAddressSchema = z.string().ip();
+const validateEmail = (value:any) => {
+  const EmailSchema = z.string().email();
   try {
-    ipAddressSchema.parse(value);
+    EmailSchema.parse(value);
     return true;
   } catch (error) {
     return false;
@@ -17,35 +17,35 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 
-const IpAddressInput: React.FC<InputProps> = ({ value }) => {
-  const [ipAddress, setIpAddress] = useState(value);
+const EmailInput: React.FC<InputProps> = ({ value }) => {
+  const [Email, setEmail] = useState(value);
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
-    setIpAddress(value);
+    setEmail(value);
   }, [value]);
 
   const handleInputChange = (event:any) => {
     const value = event.target.value;
-    setIpAddress(value);
+    setEmail(value);
 
-    const isValidIpAddress = validateIpAddress(value);
-    console.log(isValidIpAddress);
-    setIsValid(isValidIpAddress);
+    const isValidEmail = validateEmail(value);
+    console.log(isValidEmail);
+    setIsValid(isValidEmail);
   };
 
   return (
     <div>
       <Input
         type="text"
-        value={ipAddress}
+        value={Email}
         onChange={handleInputChange}
         style={{ outlineColor: isValid ? '' : 'red' }}
-        placeholder='Search by IP'
+        placeholder='Search by Email'
       />
-      {!isValid && <Label style={{ color: 'red' }}>Invalid IP Address</Label>}
+      {!isValid && <Label style={{ color: 'red' }}>Invalid Email Address</Label>}
     </div>
   );
 };
 
-export {IpAddressInput};
+export {EmailInput};
