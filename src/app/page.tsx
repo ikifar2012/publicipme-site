@@ -37,8 +37,8 @@ export default function Home() {
     fetchData();
   }, [publicIPV4]);
   const [copyButtonTextIPV4, setCopyButtonTextIPV4] = useState('Copy');
-  const handleIPV4Copy = () => {
-    navigator.clipboard.writeText(publicIPV4 || '');
+  const handleIPV4Copy = async () => {
+    await navigator.clipboard.writeText(publicIPV4 || '');
     setCopyButtonTextIPV4('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
@@ -47,8 +47,8 @@ export default function Home() {
   }
 
   const [copyButtonTextIPV6, setCopyButtonTextIPV6] = useState('Copy');
-  const handleIPV6Copy = () => {
-      navigator.clipboard.writeText(publicIPV6 || '');
+  const handleIPV6Copy = async () => {
+      await navigator.clipboard.writeText(publicIPV6 || '');
     setCopyButtonTextIPV6('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center h-screen">
-        <Card className="w-full max-w-md">
+        <Card className="max-w-md w-full lg:max-w-max">
           <CardHeader>
               <CardTitle className="text-2xl text-center text-gray-500">
                 PublicIP.me
@@ -75,7 +75,7 @@ export default function Home() {
                   <Skeleton className="w-[147px] h-8">
                     </Skeleton> : publicIPV4
                   }
-                <Button className="ml-2 px-4 py-2" onClick={() => handleIPV4Copy()}>
+                <Button className="ml-2 px-4 py-2" onPointerDown={() => handleIPV4Copy()}>
                   {copyButtonTextIPV4}
                 </Button>
               </div>
@@ -87,11 +87,12 @@ export default function Home() {
                 <div className="flex flex-row items-center">
                   { loadingIPV6 ?  
                   <Skeleton className="w-[430px] h-8">
-                    </Skeleton> : <div className="flex flex-col overflow-y-scroll">
-                      {publicIPV6}
+                    </Skeleton> : 
+                    <div className="overflow-x-scroll lg:overflow-hidden">
+                    {publicIPV6}
                     </div>
                     }
-                  <Button className="ml-2 px-4" onClick={() => handleIPV6Copy()}>
+                  <Button className="ml-2 px-4" onPointerDown={() => handleIPV6Copy()}>
                     {copyButtonTextIPV6}
                   </Button>
                 </div>
