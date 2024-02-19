@@ -13,7 +13,9 @@ interface ResultsCardProps {
     city: string;
   };
   isp: string;
+  id: any;
 }
+import DialogResults from "./results-dialog";
 export default function ResultsCard(props: ResultsCardProps) {
   return (
 <>
@@ -28,7 +30,7 @@ export default function ResultsCard(props: ResultsCardProps) {
             <p className="text-base text-gray-500 dark:text-white"> <b>ISP:</b> {props.isp}</p>
           </CardContent>
           <CardFooter className="flex-1 flex space-x-2 items-center justify-between">
-            <Button>Open Dialog</Button>
+            <Button onPointerDown={() => DialogResults(props.id)}>Open Dialog</Button>
             <Button variant="destructive" className="ml-auto" ><TrashIcon className="mr-2 h-4 w-4"/>Delete</Button>
           </CardFooter>
         </Card>

@@ -31,7 +31,7 @@ export default function Results() {
                     setResults([]);
                     await revalidateResults();
                 }
-            }><TrashIcon className="mr-2 h-4 w-4"/>Clear All </Button>
+            }><TrashIcon className="mr-2 h-4 w-4"/>Clear All</Button>
           </CardHeader>
           <CardContent>
 {           loading && <p>Loading...</p>}
@@ -43,6 +43,7 @@ export default function Results() {
                     lookupTime={result.lookupTime}
                     location={result.location}
                     isp={result.isp}
+                    id={result.id}
                     />
                 ))}
           </CardContent>
