@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { IpAddressInput } from "./ip-validate";
 import { Lookup } from "./lookup";
 import { addDataToDB } from "./save-data";
-import revalidateResults from "./revalidate-results";
+import DialogResults from "./results-dialog";
+// import revalidateResults from "./revalidate-results";
 
 
 export default function Page() {
@@ -55,23 +56,29 @@ export default function Page() {
         </div>
                 : null;
     }
-
+const [lookupID, setLookupID] = useState('');
+const [DialogState, setDialogState] = useState(false);
 const LookupServerSide = async (e: any) => {
-    e.preventDefault();
-    const lookupType = await e.target.name;
-    const lookupData = await e.target[0].value;
+  e.preventDefault();
+  const lookupType = await e.target.name;
+  const lookupData = await e.target[0].value;
 
   // get the lookup type from the form name
-    const result = await Lookup(lookupData, lookupType);
-    // add the result to the database
-    await addDataToDB(result);
-    console.log(result);
-    return result;
+  const result = await Lookup(lookupData, lookupType);
+  // add the result to the database
+  const id = await addDataToDB(result);
+  console.log(result);
+  setLookupID(String(id));
+  setDialogState(true);
+
 }
 
     return (
       <>
     <main className="flex flex-col items-center justify-center h-screen overflow-auto">
+      { // Dialog for the results
+        DialogState && <DialogResults id={lookupID}/>
+      }
       <Tabs className="w-full max-w-md" defaultValue="domain">
         <TabsList className="flex justify-center gap-4">
           <TabsTrigger value="domain">Domain</TabsTrigger>

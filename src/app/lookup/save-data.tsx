@@ -19,8 +19,10 @@ export const addDataToDB = async (data: any) => {
   const store = tx.objectStore(storeName);
   // add lookup time to the data
   data.lookupTime = Date.now().toString();
-  await store.add(data);
+  const id = await store.add(data);
+  console.log('Added data to the database with id:', id);
   await tx.done;
+  return id;
 };
 
 export const getAllDataFromDB = async () => {
@@ -42,6 +44,7 @@ export const getIndexedDBData = async (id: string) => {
   const db = await openDatabase();
   const tx = db.transaction(storeName, 'readonly');
   const store = tx.objectStore(storeName);
+  
   const data = await store.get(id);
   await tx.done;
   return data as LookupData;
