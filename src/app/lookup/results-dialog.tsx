@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -32,8 +33,8 @@ export default function DialogResults(props: ResultsCardProps) {
   
   return (
     <>
-    <Dialog open={isOpen}>
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Results</DialogTitle>
           <DialogDescription>
@@ -70,7 +71,11 @@ export default function DialogResults(props: ResultsCardProps) {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit" variant="destructive">Close</Button>
+        <DialogClose>
+          <Button type="button" variant="destructive">
+            Close
+          </Button>
+        </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
