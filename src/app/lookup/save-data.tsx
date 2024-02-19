@@ -40,12 +40,12 @@ export const clearAllDataFromDB = async () => {
   await store.clear();
   await tx.done;
 }
-export const getIndexedDBData = async (id: string) => {
+export const getIndexedDBData = async (id: Number) => {
   const db = await openDatabase();
   const tx = db.transaction(storeName, 'readonly');
   const store = tx.objectStore(storeName);
-  
-  const data = await store.get(id);
+
+  const data = await store.get(Number(id));
   await tx.done;
   return data as LookupData;
 }
