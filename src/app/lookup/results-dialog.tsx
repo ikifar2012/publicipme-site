@@ -60,14 +60,30 @@ export default function DialogResults(props: ResultsCardProps) {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-4xl">
           <DialogHeader>
             <DialogTitle>Results</DialogTitle>
             <DialogDescription>
               Results of your search
-              <div className="flex">
-                <div className="flex-1 mt-5 mr-5">
+              <div className="grid grid-cols-2 gap-5">
+                <div className="col-span-1">
                   <div>
+                    <p className="text-slate-100 text-lg font-semibold">ISP: {loading ? 'Loading...' : jsonData.isp}</p>
+                    <p className="text-slate-100 text-lg font-semibold">ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
+                    <p className="text-slate-100 text-lg font-semibold">Name: {loading ? 'Loading...' : jsonData.as.name}</p>
+                    <p className="text-slate-100 text-lg font-semibold">Route: {loading ? 'Loading...' : jsonData.as.route}</p>
+                    <p className="text-slate-100 text-lg font-semibold">Domain: {loading ? 'Loading...' : jsonData.as.type}</p>
+                  </div>
+                </div>
+                <div className="col-span-1 flex flex-col items-center justify-center">
+                  <h2 className="text-slate-100 text-2xl font-semibold">Map</h2>
+                  <iframe
+                    className="w-full h-96"
+                    style={{ border: 0 }}
+                    src={loading ? 'Loading...' : `https://openstreetmap.org/export/embed.html?bbox=${jsonData.location.lng},${jsonData.location.lat},${jsonData.location.lng},${jsonData.location.lat}&layer=mapnik&marker=${jsonData.location.lat},${jsonData.location.lng}`}
+                    allowFullScreen
+                  ></iframe>
+                  <div className="mt-5">
                     <p className="text-slate-100 text-lg font-semibold">Country: {loading ? 'Loading...' : jsonData.location.country}</p>
                     <p className="text-slate-100 text-lg font-semibold">Region: {loading ? 'Loading...' : jsonData.location.region}</p>
                     <p className="text-slate-100 text-lg font-semibold">City: {loading ? 'Loading...' : jsonData.location.city}</p>
@@ -77,27 +93,6 @@ export default function DialogResults(props: ResultsCardProps) {
                     <p className="text-slate-100 text-lg font-semibold">Timezone: {loading ? 'Loading...' : jsonData.location.timezone}</p>
                     <p className="text-slate-100 text-lg font-semibold">Geoname ID: {loading ? 'Loading...' : jsonData.location.geonameId}</p>
                   </div>
-                </div>
-                <div className="flex-1 mt-5 ml-5">
-                  <div>
-                    <p className="text-slate-100 text-lg font-semibold">ISP: {loading ? 'Loading...' : jsonData.isp}</p>
-                    <p className="text-slate-100 text-lg font-semibold">ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
-                    <p className="text-slate-100 text-lg font-semibold">Name: {loading ? 'Loading...' : jsonData.as.name}</p>
-                    <p className="text-slate-100 text-lg font-semibold">Route: {loading ? 'Loading...' : jsonData.as.route}</p>
-                    <p className="text-slate-100 text-lg font-semibold">Domain: {loading ? 'Loading...' : jsonData.as.type}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-center mt-5 w-full">
-                <div className="w-full">
-                  <h2 className="text-slate-100 text-2xl font-semibold">Map</h2>
-                  <iframe
-                    width="100%"
-                    height="300"
-                    style={{ border: 0 }}
-                    src={loading ? 'Loading...' : `https://openstreetmap.org/export/embed.html?bbox=${jsonData.location.lng},${jsonData.location.lat},${jsonData.location.lng},${jsonData.location.lat}&layer=mapnik&marker=${jsonData.location.lat},${jsonData.location.lng}`}
-                    allowFullScreen
-                  ></iframe>
                 </div>
               </div>
             </DialogDescription>
