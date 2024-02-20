@@ -22,6 +22,32 @@ export default function DialogResults(props: ResultsCardProps) {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getIndexedDBData(props.id);
+      // if any props are missing, set them to 'not available' for each field
+      if (!data.location) {
+        data.location = {
+          country: 'Not available',
+          region: 'Not available',
+          city: 'Not available',
+          lat: 0,
+          lng: 0,
+          postalCode: 'Not available',
+          timezone: 'Not available',
+          geonameId: 0,
+        };
+      }
+      if (!data.as) {
+        data.as = {
+          asn: 0,
+          name: 'Not available',
+          route: 'Not available',
+          domain: 'Not available',
+          type: 'Not available',
+        };
+      }
+      if (!data.isp) {
+        data.isp = 'Not available';
+      }
+
       setJsonData(data);
       setIsOpen(true);
       setLoading(false);

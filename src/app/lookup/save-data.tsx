@@ -50,6 +50,8 @@ export const getIndexedDBData = async (id: Number) => {
   return data as LookupData;
 }
 interface LookupData {
+[x: string]: { asn: number; name: string; route: string; domain: string; };
+data: { asn: number; name: string; route: string; domain: string; };
 ip: string;
 location: {
     country: string;
