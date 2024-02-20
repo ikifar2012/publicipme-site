@@ -40,26 +40,24 @@ export default function DialogResults(props: ResultsCardProps) {
           <DialogDescription>
             Results of your search
           <div>
-            <h2>Location</h2>
-            <p>Country: {loading ? 'Loading...' : jsonData.location.country}</p>
-            <p>Region: {loading ? 'Loading...' : jsonData.location.region}</p>
-            <p>City: {loading ? 'Loading...' : jsonData.location.city}</p>
-            <p>Postal Code: {loading ? 'Loading...' : jsonData.location.postalCode}</p>
-            <p>Latitude: {loading ? 'Loading...' : jsonData.location.lat}</p>
-            <p>Longitude: {loading ? 'Loading...' : jsonData.location.lng}</p>
-            <p>Timezone: {loading ? 'Loading...' : jsonData.location.timezone}</p>
-            <p>Geoname ID: {loading ? 'Loading...' : jsonData.location.geonameId}</p>
+            <p className="text-slate-100 text-lg font-semibold">Country: {loading ? 'Loading...' : jsonData.location.country}</p>
+            <p className="text-slate-100 text-lg font-semibold">Region: {loading ? 'Loading...' : jsonData.location.region}</p>
+            <p className="text-slate-100 text-lg font-semibold">City: {loading ? 'Loading...' : jsonData.location.city}</p>
+            <p className="text-slate-100 text-lg font-semibold">Postal Code: {loading ? 'Loading...' : jsonData.location.postalCode}</p>
+            <p className="text-slate-100 text-lg font-semibold">Latitude: {loading ? 'Loading...' : jsonData.location.lat}</p>
+            <p className="text-slate-100 text-lg font-semibold">Longitude: {loading ? 'Loading...' : jsonData.location.lng}</p>
+            <p className="text-slate-100 text-lg font-semibold">Timezone: {loading ? 'Loading...' : jsonData.location.timezone}</p>
+            <p className="text-slate-100 text-lg font-semibold">Geoname ID: {loading ? 'Loading...' : jsonData.location.geonameId}</p>
           </div>
           <div>
-            <p>ISP: {loading ? 'Loading...' : jsonData.isp}</p>
-            <h2>AS</h2>
-            <p>ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
-            <p>Name: {loading ? 'Loading...' : jsonData.as.name}</p>
-            <p>Route: {loading ? 'Loading...' : jsonData.as.route}</p>
-            <p>Domain: {loading ? 'Loading...' : jsonData.as.type}</p>
+            <p className="text-slate-100 text-lg font-semibold">ISP: {loading ? 'Loading...' : jsonData.isp}</p>
+            <p className="text-slate-100 text-lg font-semibold">ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
+            <p className="text-slate-100 text-lg font-semibold">Name: {loading ? 'Loading...' : jsonData.as.name}</p>
+            <p className="text-slate-100 text-lg font-semibold">Route: {loading ? 'Loading...' : jsonData.as.route}</p>
+            <p className="text-slate-100 text-lg font-semibold">Domain: {loading ? 'Loading...' : jsonData.as.type}</p>
           </div>
           <div>
-            <h2>Map</h2>
+            <h2 className="text-slate-100 text-2xl font-semibold">Map</h2>
             <iframe
               width="100%"
               height="300"
