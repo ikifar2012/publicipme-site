@@ -60,13 +60,13 @@ export default function DialogResults(props: ResultsCardProps) {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-4xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Results</DialogTitle>
             <DialogDescription>
               Results of your search
-              <div className="grid grid-cols-2 gap-5">
-                <div className="col-span-1">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
                   <div>
                     <p className="text-slate-100 text-lg font-semibold">ISP: {loading ? 'Loading...' : jsonData.isp}</p>
                     <p className="text-slate-100 text-lg font-semibold">ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
@@ -75,7 +75,7 @@ export default function DialogResults(props: ResultsCardProps) {
                     <p className="text-slate-100 text-lg font-semibold">Domain: {loading ? 'Loading...' : jsonData.as.type}</p>
                   </div>
                 </div>
-                <div className="col-span-1 flex flex-col items-center justify-center">
+                <div className="md:flex md:flex-col md:items-center md:justify-center">
                   <h2 className="text-slate-100 text-2xl font-semibold">Map</h2>
                   <iframe
                     className="w-full h-96"
