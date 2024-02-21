@@ -8,10 +8,11 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    /* z-index: 1000; */
     display: flex;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+    
   }
   
   .menuBar nav {

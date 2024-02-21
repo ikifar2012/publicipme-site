@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="md:p-6 bg-gradient-to-r from-black via-gray-900 to-black">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SiteNavigationMenu />
           {children}

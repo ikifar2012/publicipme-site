@@ -10,6 +10,13 @@ import {
 } from "@/components/ui/dialog"
 import { getIndexedDBData } from "./save-data";
 import { useState, useEffect } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import JSONHTMLRender from "./jsonHTML";
 interface ResultsCardProps {
   id: any;
 }
@@ -60,20 +67,31 @@ export default function DialogResults(props: ResultsCardProps) {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-4xl overflow-y-auto">
+        <DialogContent className="lg:max-w-4xl overflow-y-auto max-h-screen max-w-screen-sm mb-10 mt-10">
           <DialogHeader>
             <DialogTitle>Results</DialogTitle>
             <DialogDescription>
               Results of your search
               <div className="grid md:grid-cols-2 gap-5">
-                <div>
-                  <div>
+                <div className="flex flex-col items-center">
+                <h2 className="text-slate-100 text-2xl font-semibold">Info</h2>
+                  <div className="md:mt-5">
                     <p className="text-slate-100 text-lg font-semibold">ISP: {loading ? 'Loading...' : jsonData.isp}</p>
                     <p className="text-slate-100 text-lg font-semibold">ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
                     <p className="text-slate-100 text-lg font-semibold">Name: {loading ? 'Loading...' : jsonData.as.name}</p>
                     <p className="text-slate-100 text-lg font-semibold">Route: {loading ? 'Loading...' : jsonData.as.route}</p>
                     <p className="text-slate-100 text-lg font-semibold">Domain: {loading ? 'Loading...' : jsonData.as.type}</p>
                   </div>
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="raw-data">
+                  <AccordionTrigger>Raw JSON Data</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="w-full">
+                      <JSONHTMLRender code={JSON.stringify(jsonData, null, 2)} onPointerDown={() => navigator.clipboard.writeText(JSON.stringify(jsonData))}/>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
                 </div>
                 <div className="md:flex md:flex-col md:items-center md:justify-center">
                   <h2 className="text-slate-100 text-2xl font-semibold">Map</h2>
@@ -83,7 +101,7 @@ export default function DialogResults(props: ResultsCardProps) {
                     src={loading ? 'Loading...' : `https://openstreetmap.org/export/embed.html?bbox=${jsonData.location.lng},${jsonData.location.lat},${jsonData.location.lng},${jsonData.location.lat}&layer=mapnik&marker=${jsonData.location.lat},${jsonData.location.lng}`}
                     allowFullScreen
                   ></iframe>
-                  <div className="mt-5">
+                  <div className="mt-5 text-left w-full"> {/* Aligning location data to the left */}
                     <p className="text-slate-100 text-lg font-semibold">Country: {loading ? 'Loading...' : jsonData.location.country}</p>
                     <p className="text-slate-100 text-lg font-semibold">Region: {loading ? 'Loading...' : jsonData.location.region}</p>
                     <p className="text-slate-100 text-lg font-semibold">City: {loading ? 'Loading...' : jsonData.location.city}</p>
