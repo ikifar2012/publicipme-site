@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="md:p-6 bg-gradient-to-r from-black via-gray-900 to-black">
+      <body className="bg-gradient-to-br from-top from-purple-900 via-slate-950 to-blue-950 transition-all duration-1000 ease-in-out">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SiteNavigationMenu />
           {children}
