@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center h-screen">
-        <Card className="max-w-md w-full lg:max-w-max">
+        <Card className="max-w-md w-full lg:max-w-max bg-opacity-45 backdrop-blur-xl bg-stone-950">
           <CardHeader>
               <CardTitle className="text-2xl text-center text-gray-500">
                 PublicIP.me

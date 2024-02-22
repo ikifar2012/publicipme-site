@@ -20,7 +20,7 @@ export default function ResultsCard(props: ResultsCardProps) {
   return (
 <>
 <div className="mt-6">
-        <Card className="flex-col bg-zinc-900">
+        <Card className="flex-col bg-zinc-900 bg-opacity-45 backdrop-blur-xl">
           <CardHeader>
             <CardTitle>{props.ip}</CardTitle>
           </CardHeader>

@@ -22,7 +22,7 @@ export default function Results() {
         fetchData();
     }, []);
     return (
-        <Card className="w-full rounded-none border-none min-h-2.5 bottom-0">
+        <Card className="w-full rounded-3xl border-none min-h-2.5 bottom-0 bg-opacity-45 backdrop-blur-xl bg-stone-950">
           <CardHeader>
             <CardTitle>Search Results</CardTitle>
             <Button variant="destructive" className="ml-auto" onPointerDown={
