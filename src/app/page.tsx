@@ -12,11 +12,16 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
-  const [publicIPV4, setPublicIPV4] = useState(null);
+  const [publicIPV4, setPublicIPV4] = useState('');
   const [loadingIPV4, setLoadingIPV4] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.ipify.org?format=json');
+      if (!response.ok) {
+        setPublicIPV4('Not available');
+        setLoadingIPV4(false);
+        return;
+      }
       const data = await response.json();
       setPublicIPV4(data.ip);
       setLoadingIPV4(false);
@@ -26,12 +31,17 @@ export default function Home() {
   }, []);
 
   const [loadingIPV6, setLoadingIPV6] = useState(true);
-  const [publicIPV6, setPublicIPV6] = useState(null);
+  const [publicIPV6, setPublicIPV6] = useState('');
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://api64.ipify.org?format=json');
+      const response = await fetch('https://api6.ipify.org?format=json');
+      if (!response.ok) {
+        setPublicIPV6('Not available');
+        setLoadingIPV6(false);
+        return;
+      }
       const data = await response.json();
-      setPublicIPV6(data.ip === publicIPV4 ? 'Not available' : data.ip);
+      setPublicIPV6(data.ip);
       setLoadingIPV6(false);
     };
     fetchData();
