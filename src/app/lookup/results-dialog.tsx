@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -8,8 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { getIndexedDBData } from "./save-data";
-import { useState, useEffect } from "react";
+import { getIndexedDBData, getAllDataFromDB } from "./save-data";
+import { useState, useEffect, Context, useContext } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -17,7 +18,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import JSONHTMLRender from "./jsonHTML";
-interface ResultsCardProps {
+import { DialogProps } from "@radix-ui/react-dialog";
+import { ResultsContext } from "./context/results-context";
+
+interface ResultsCardProps extends DialogProps {
   id: any;
 }
 
@@ -63,10 +67,25 @@ export default function DialogResults(props: ResultsCardProps) {
     fetchData();
 
   }, [props.id]);
-  
+
+  const { setResults } = useContext(ResultsContext);
+  useEffect(() => {
+    const fetchData = async () => {
+        const data = await getAllDataFromDB();
+        // sort the data descending 
+        data.sort((a, b) => b.lookupTime - a.lookupTime);
+        setResults(data);
+        setLoading(false);
+        console.log('Hi')
+    };
+    fetchData();
+}, [setResults]);
+      async function closeDialog() {
+        setIsOpen(false);
+      }
   return (
     <>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog open={isOpen} onOpenChange={closeDialog}>
         <DialogContent className="lg:max-w-4xl overflow-y-auto max-h-screen max-w-screen-sm mb-10 mt-10">
           <DialogHeader>
             <DialogTitle>Results</DialogTitle>

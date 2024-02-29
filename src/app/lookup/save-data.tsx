@@ -49,9 +49,14 @@ export const getIndexedDBData = async (id: Number) => {
   await tx.done;
   return data as LookupData;
 }
+export const clearDataFromDB = async (id: Number) => {
+  const db = await openDatabase();
+  const tx = db.transaction(storeName, 'readwrite');
+  const store = tx.objectStore(storeName);
+  await store.delete(Number(id));
+  await tx.done;
+}
 interface LookupData {
-[x: string]: { asn: number; name: string; route: string; domain: string; };
-data: { asn: number; name: string; route: string; domain: string; };
 ip: string;
 location: {
     country: string;

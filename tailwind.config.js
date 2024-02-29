@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { SiBuymeacoffeeHex } from '@icons-pack/react-simple-icons';
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -18,6 +19,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        buymeacoffee: SiBuymeacoffeeHex,
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

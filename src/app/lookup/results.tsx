@@ -1,15 +1,15 @@
 
 import { getAllDataFromDB, clearAllDataFromDB } from "./save-data";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ResultsCard from "./lookup-results-card";
 import { Card,CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "lucide-react";
-import revalidateResults from "./revalidate-results";
+import { ResultsContext } from "./context/results-context";
 
 
 export default function Results() {
-    const [results, setResults] = useState<any[]>([]); // Update type annotation for results
+    const { results, setResults } = useContext(ResultsContext);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +20,7 @@ export default function Results() {
             setLoading(false);
         };
         fetchData();
-    }, []);
+    }, [setResults]);
     return (
         <Card className="w-full rounded-3xl border-none min-h-2.5 bottom-0 bg-opacity-45 backdrop-blur-xl bg-stone-950">
           <CardHeader>
@@ -29,7 +29,6 @@ export default function Results() {
                 async () => {
                     await clearAllDataFromDB();
                     setResults([]);
-                    await revalidateResults();
                 }
             }><TrashIcon className="mr-2 h-4 w-4"/>Clear All</Button>
           </CardHeader>
