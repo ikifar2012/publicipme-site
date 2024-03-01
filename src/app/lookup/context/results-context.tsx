@@ -1,4 +1,4 @@
-
+'use client'
 import { FC, ReactNode, createContext, useState, Dispatch, SetStateAction } from "react";
 interface ResultsContextProps {
     results: any[];

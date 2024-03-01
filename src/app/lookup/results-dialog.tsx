@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { getIndexedDBData, getAllDataFromDB } from "./save-data";
-import { useState, useEffect, Context, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -69,19 +69,13 @@ export default function DialogResults(props: ResultsCardProps) {
   }, [props.id]);
 
   const { setResults } = useContext(ResultsContext);
-  useEffect(() => {
-    const fetchData = async () => {
+
+      async function closeDialog() {
+        setIsOpen(false);
         const data = await getAllDataFromDB();
         // sort the data descending 
         data.sort((a, b) => b.lookupTime - a.lookupTime);
         setResults(data);
-        setLoading(false);
-        console.log('Hi')
-    };
-    fetchData();
-}, [setResults]);
-      async function closeDialog() {
-        setIsOpen(false);
       }
   return (
     <>

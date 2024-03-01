@@ -130,9 +130,7 @@ const LookupServerSide = async (e: any) => {
       </Tabs>
     </main>
     <ScrollHint />
-    <ResultsProvider>
       <Results />
-    </ResultsProvider>
       </>
           )
 }

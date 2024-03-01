@@ -15,6 +15,7 @@ export const viewport: Viewport = {
 
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteNavigationMenu } from '@/components/nav'
+import { ResultsProvider } from './lookup/context/results-context'
 
 export default function RootLayout({
   children,
@@ -25,8 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-gradient-to-b from-purple-900 via-slate-950 to-blue-950 transition-all duration-1000 ease-in-out">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ResultsProvider>
           <SiteNavigationMenu />
           {children}
+          </ResultsProvider>
         </ThemeProvider>
       </body>
     </html>
