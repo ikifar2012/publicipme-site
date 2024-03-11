@@ -80,10 +80,10 @@ const LookupServerSide = async (e: any) => {
       { // Dialog for the results
         DialogState && <DialogResults id={lookupID}/>
       }
-      <Tabs className="w-full max-w-md" defaultValue="domain">
+      <Tabs className="w-full max-w-md" defaultValue="ip">
         <TabsList className="flex justify-center gap-4">
-          <TabsTrigger value="domain">Domain</TabsTrigger>
-          <TabsTrigger value="email">Email</TabsTrigger>
+          {/* <TabsTrigger value="domain">Domain</TabsTrigger>
+          <TabsTrigger value="email">Email</TabsTrigger> */}
           <TabsTrigger value="ip">IP</TabsTrigger>
         </TabsList>
         <TabsContent value="domain">
