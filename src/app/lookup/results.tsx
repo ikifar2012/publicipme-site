@@ -6,7 +6,9 @@ import { Card,CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "lucide-react";
 import { ResultsContext } from "./context/results-context";
-
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 export default function Results() {
     const { results, setResults } = useContext(ResultsContext);
@@ -36,10 +38,11 @@ export default function Results() {
 {           loading && <p>Loading...</p>}
               {!loading && results.length === 0 && <p>No results found</p>}
                 {!loading && results.length > 0 && results.map((result) => (
+                    // from now
                     <ResultsCard
                     key={result.id}
                     ip={result.ip}
-                    lookupTime={result.lookupTime}
+                    lookupTime={dayjs.unix(result.lookupTime).fromNow()}
                     location={result.location}
                     isp={result.isp}
                     id={result.id}

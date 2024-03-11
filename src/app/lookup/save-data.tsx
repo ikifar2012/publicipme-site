@@ -18,7 +18,7 @@ export const addDataToDB = async (data: any) => {
   const tx = db.transaction(storeName, 'readwrite');
   const store = tx.objectStore(storeName);
   // add lookup time to the data
-  data.lookupTime = Date.now().toString();
+  data.lookupTime = Date.now() / 1000;
   const id = await store.add(data);
   console.log('Added data to the database with id:', id);
   await tx.done;
