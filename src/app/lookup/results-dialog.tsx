@@ -88,7 +88,7 @@ export default function DialogResults(props: ResultsCardProps) {
               <div className="grid md:grid-cols-2 gap-5">
                 <div className="flex flex-col items-center">
                 <h2 className="text-slate-100 text-2xl font-semibold">Info</h2>
-                  <div className="md:mt-5">
+                  <div className="md:mt-5 text-left w-full">
                     <p className="text-slate-100 text-lg font-semibold">ISP: {loading ? 'Loading...' : jsonData.isp}</p>
                     <p className="text-slate-100 text-lg font-semibold">ASN: {loading ? 'Loading...' : jsonData.as.asn}</p>
                     <p className="text-slate-100 text-lg font-semibold">Name: {loading ? 'Loading...' : jsonData.as.name}</p>
