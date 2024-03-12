@@ -6,7 +6,9 @@
 import { TrashIcon } from "@radix-ui/react-icons"
 import { Button } from "@/components/ui/button"
 import { clearDataFromDB } from "./save-data";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
+import { ResultsContext } from "./context/results-context";
+import { getAllDataFromDB } from "./save-data";
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 interface ResultsCardProps {
   ip: string;
@@ -20,11 +22,19 @@ interface ResultsCardProps {
 import DialogResults from "./results-dialog";
 export default function ResultsCard(props: ResultsCardProps) {
   const [DialogState, setDialogState] = useState(false);
+  const { results, setResults } = useContext(ResultsContext);
   const [lookupID, setLookupID] = useState('');
 
   const openDialog = (id: any) => {
     setLookupID(String(id));
     setDialogState(true);
+  }
+  const deleteResult = async (id: any) => {
+    clearDataFromDB(id);
+    const data = await getAllDataFromDB();
+    // sort the data descending 
+    data.sort((a, b) => b.lookupTime - a.lookupTime);
+    setResults(data);
   }
   // const clearandRefresh = (id: any) => {
   //   clearDataFromDB(id);
@@ -46,7 +56,7 @@ export default function ResultsCard(props: ResultsCardProps) {
           </CardContent>
           <CardFooter className="flex-1 flex space-x-2 items-center justify-between">
             <Button onPointerDown={() => openDialog(props.id)}>Open Dialog</Button>
-            <Button onPointerDown={() => clearDataFromDB(props.id)} variant="destructive" className="ml-auto" ><TrashIcon className="mr-2 h-4 w-4"/>Delete</Button>
+            <Button onPointerDown={() => deleteResult(props.id)} variant="destructive" className="ml-auto" ><TrashIcon className="mr-2 h-4 w-4"/>Delete</Button>
           </CardFooter>
         </Card>
       </div>
