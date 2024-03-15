@@ -28,7 +28,8 @@ interface ResultsCardProps extends DialogProps {
 export default function DialogResults(props: ResultsCardProps) {
   // Fetch the IndexedDB data based on the index id
   const [jsonData, setJsonData] = useState<any>({});
-  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen, setIsOpen] = useState(false);
+  const { setDialogState } = useContext(ResultsContext);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +62,7 @@ export default function DialogResults(props: ResultsCardProps) {
 
       setJsonData(data);
       setIsOpen(true);
+      setDialogState(true);
       setLoading(false);
       console.log(data);
     };
@@ -72,6 +74,7 @@ export default function DialogResults(props: ResultsCardProps) {
 
       async function closeDialog() {
         setIsOpen(false);
+        setDialogState(false);
         const data = await getAllDataFromDB();
         // sort the data descending 
         data.sort((a, b) => b.lookupTime - a.lookupTime);

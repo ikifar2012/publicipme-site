@@ -21,8 +21,8 @@ interface ResultsCardProps {
 }
 import DialogResults from "./results-dialog";
 export default function ResultsCard(props: ResultsCardProps) {
-  const [DialogState, setDialogState] = useState(false);
-  const { results, setResults } = useContext(ResultsContext);
+  const [] = useState(false);
+  const { results, setResults, DialogState, setDialogState } = useContext(ResultsContext);
   const [lookupID, setLookupID] = useState('');
 
   const openDialog = (id: any) => {
