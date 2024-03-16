@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-gradient-to-b from-purple-900 via-slate-950 to-blue-950 transition-all duration-1000 ease-in-out">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ResultsProvider>

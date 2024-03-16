@@ -50,4 +50,13 @@
   .menuBar nav ul li a:hover {
     color: #828282; /* Adjust the color for the hover state */
   }
-  
+  .mainLinks {
+    display: flex;
+    gap: 20px;
+    float: left;
+  }
+  .rightLinks {
+    display: flex;
+    float:right;
+    gap: 20px;
+  }
