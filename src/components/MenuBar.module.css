@@ -33,6 +33,7 @@
     list-style: none;
     display: flex;
     gap: 20px;
+    float: left;
   }
   
   .menuBar nav ul li {
@@ -50,13 +51,16 @@
   .menuBar nav ul li a:hover {
     color: #828282; /* Adjust the color for the hover state */
   }
-  .mainLinks {
-    display: flex;
+  .socials {
+    display: inline-flex;
+    float: right;
+    text-decoration: none;
+    color: #FFFFFF; /* Adjust the color based on your design */
+    font-weight: bold;
+    transition: color 0.3s ease; 
+    list-style: none;
     gap: 20px;
-    float: left;
   }
-  .rightLinks {
-    display: flex;
-    float:right;
-    gap: 20px;
+  .socials a:hover {
+    color: #828282; /* Adjust the color for the hover state */
   }

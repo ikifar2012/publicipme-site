@@ -8,7 +8,7 @@ function SiteNavigationMenu() {
 // wrap this in a translucent bar to make it sticky full width
 
 <div className={styles.menuBar}>
-<nav>
+<nav className='w-screen'>
   <ul>
     <li>
       <Link href="/">
@@ -20,17 +20,19 @@ function SiteNavigationMenu() {
         Lookup
       </Link>
     </li>
+    </ul>
+    <div className={styles.socials}>
     <li>
-      <Link href="/github">
+      <Link href="https://github.com/ikifar2012">
         <SiGithub/>
       </Link>
     </li>
     <li>
-      <Link href="/donate">
+      <Link href="https://www.buymeacoffee.com/mathesonstep">
         <SiBuymeacoffee className='hover:fill-buymeacoffee'/>
       </Link>
     </li>
-  </ul>
+    </div>
 </nav>
 </div>
     )
