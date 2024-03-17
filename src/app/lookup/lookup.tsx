@@ -37,4 +37,6 @@ async function geolocateIpAddress(ipAddress: string,  type: string) {
         throw error;
     }
 }
+export const runtime = 'edge';
+
 
