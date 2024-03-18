@@ -17,8 +17,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { SiteNavigationMenu } from '@/components/nav'
 import { ResultsProvider } from './lookup/context/results-context'
 
-export const runtime = 'edge'
-
 export default function RootLayout({
   children,
 }: {

@@ -9,7 +9,7 @@ import { Lookup } from "./lookup";
 import { addDataToDB } from "./save-data";
 import DialogResults from "./results-dialog";
 // import revalidateResults from "./revalidate-results";
-
+export const runtime = 'edge';
 
 export default function Page() {
     const [publicIPV4, setPublicIPV4] = useState('');
@@ -70,7 +70,6 @@ const LookupServerSide = async (e: any) => {
   console.log(result);
   setLookupID(String(id));
   setDialogState(true);
-
 }
 
     return (
