@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -24,6 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+    <SpeedInsights/>
       <body className="bg-gradient-to-b from-purple-900 via-slate-950 to-blue-950 transition-all duration-1000 ease-in-out">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ResultsProvider>
