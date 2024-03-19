@@ -23,7 +23,7 @@ function SiteNavigationMenu() {
     </ul>
     <div className={styles.socials}>
     <li>
-      <Link href="https://github.com/ikifar2012">
+      <Link href="https://github.com/ikifar2012/publicipme-site">
         <SiGithub/>
       </Link>
     </li>
