@@ -41,11 +41,11 @@ export default function Results() {
                     // from now
                     <ResultsCard
                     key={result.id}
-                    ip={result.ip}
-                    lookupTime={dayjs.unix(result.lookupTime).fromNow()}
-                    location={result.location}
-                    isp={result.isp}
-                    id={result.id}
+                    ip={result.ip ? result.ip : 'Not available'}
+                    lookupTime={dayjs.unix(result.lookupTime).fromNow() ? dayjs.unix(result.lookupTime).fromNow() : 'Not available'}
+                    location={result.location ? result.location : 'Not available'}
+                    isp={result.isp ? result.isp : 'Not available'}
+                    id={result.id ? result.id : 'Not available'}
                     />
                 ))}
           </CardContent>
