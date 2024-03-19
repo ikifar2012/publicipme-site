@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton";
+import copy from 'copy-to-clipboard';
 
 export default function Home() {
   const [publicIPV4, setPublicIPV4] = useState('');
@@ -48,7 +49,7 @@ export default function Home() {
   }, [publicIPV4]);
   const [copyButtonTextIPV4, setCopyButtonTextIPV4] = useState('Copy');
   const handleIPV4Copy = async () => {
-    await navigator.clipboard.writeText(publicIPV4 || '');
+    copy(publicIPV4 || '');
     setCopyButtonTextIPV4('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
@@ -58,7 +59,7 @@ export default function Home() {
 
   const [copyButtonTextIPV6, setCopyButtonTextIPV6] = useState('Copy');
   const handleIPV6Copy = async () => {
-      await navigator.clipboard.writeText(publicIPV6 || '');
+      copy(publicIPV6 || '');
     setCopyButtonTextIPV6('Copied!');
     // reset the button text after 3 seconds
     setTimeout(() => {
