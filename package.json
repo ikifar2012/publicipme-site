@@ -25,7 +25,7 @@
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.11",
     "idb": "^8.0.0",
-    "lucide-react": "^0.399.0",
+    "lucide-react": "^0.400.0",
     "next": "^14.1.4",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
