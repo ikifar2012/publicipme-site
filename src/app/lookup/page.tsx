@@ -16,7 +16,7 @@ export default function Page() {
           try {
             const response = await fetch('/api/ip');
             const data = await response.json();
-            setPublicIPV4(data.ip || '');
+            setPublicIPV4(data.ip || data.ipv4 || '');
           } catch (e) {
             setPublicIPV4('');
           }
@@ -30,7 +30,7 @@ export default function Page() {
           try {
             const response = await fetch('/api/ip');
             const data = await response.json();
-            setPublicIPV6(data.ip || '');
+            setPublicIPV6(data.ipv6 || data.ip || '');
           } catch (e) {
             setPublicIPV6('');
           }

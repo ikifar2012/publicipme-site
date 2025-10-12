@@ -25,7 +25,8 @@ export default function Home() {
           return;
         }
         const data = await response.json();
-        setPublicIPV4(data.ip || 'Not available');
+        // prefer IPv4 value, but fall back to any ip field
+        setPublicIPV4(data.ip || data.ipv4 || 'Not available');
         setLoadingIPV4(false);
       } catch (e) {
         setPublicIPV4('Not available');
@@ -48,7 +49,8 @@ export default function Home() {
           return;
         }
         const data = await response.json();
-        setPublicIPV6(data.ip || 'Not available');
+        // the API now returns an `ipv6` field for IPv6 addresses
+        setPublicIPV6(data.ipv6 || data.ip || 'Not available');
         setLoadingIPV6(false);
       } catch (e) {
         setPublicIPV6('Not available');
