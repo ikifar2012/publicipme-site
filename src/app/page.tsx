@@ -17,15 +17,21 @@ export default function Home() {
   const [loadingIPV4, setLoadingIPV4] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://api.ipify.org?format=json');
-      if (!response.ok) {
+      try {
+        const response = await fetch('/api/ip');
+        if (!response.ok) {
+          setPublicIPV4('Not available');
+          setLoadingIPV4(false);
+          return;
+        }
+        const data = await response.json();
+        // prefer IPv4 value, but fall back to any ip field
+        setPublicIPV4(data.ip || data.ipv4 || 'Not available');
+        setLoadingIPV4(false);
+      } catch (e) {
         setPublicIPV4('Not available');
         setLoadingIPV4(false);
-        return;
       }
-      const data = await response.json();
-      setPublicIPV4(data.ip);
-      setLoadingIPV4(false);
     };
 
     fetchData();
@@ -35,15 +41,21 @@ export default function Home() {
   const [publicIPV6, setPublicIPV6] = useState('');
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://api6.ipify.org?format=json');
-      if (!response.ok) {
+      try {
+        const response = await fetch('https://ip-worker.steplock.workers.dev/api/ip/v6');
+        if (!response.ok) {
+          setPublicIPV6('Not available');
+          setLoadingIPV6(false);
+          return;
+        }
+        const data = await response.json();
+        // the API now returns an `ipv6` field for IPv6 addresses
+        setPublicIPV6(data.ipv6 || data.ip || 'Not available');
+        setLoadingIPV6(false);
+      } catch (e) {
         setPublicIPV6('Not available');
         setLoadingIPV6(false);
-        return;
       }
-      const data = await response.json();
-      setPublicIPV6(data.ip);
-      setLoadingIPV6(false);
     };
     fetchData();
   }, [publicIPV4]);
