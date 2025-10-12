@@ -26,7 +26,7 @@ export async function GET(request: Request) {
         const contentType = resp.headers.get('content-type') || ''
         if (contentType.includes('application/json')) {
           const data = await resp.json()
-          ipv6 = data.ip || data.ipv6 || String(data || '')
+          ipv6 = data.ipv6 || 'unknown'
         } else {
           const text = await resp.text()
           ipv6 = text || 'unknown'
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
       // network failure — leave ipv6 as 'unknown'
     }
 
-    return NextResponse.json({ ip, ipv6 })
+    return NextResponse.json({ ip: ip || 'unknown', ipv6: ipv6 || 'unknown' })
   } catch (err) {
     return NextResponse.json({ ip: 'unknown', ipv6: 'unknown' }, { status: 500 })
   }
