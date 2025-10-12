@@ -13,14 +13,28 @@ export default function Page() {
     const [publicIPV4, setPublicIPV4] = useState('');
     useEffect(() => {
       const fetchData = async () => {
-          try {
-            const response = await fetch('/api/ip');
-            const data = await response.json();
-            setPublicIPV4(data.ip || data.ipv4 || '');
-          } catch (e) {
+    const [publicIPV4, setPublicIPV4] = useState('');
+    const [publicIPV6, setPublicIPV6] = useState('');
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('/api/ip');
+          if (!response.ok) {
             setPublicIPV4('');
+            setPublicIPV6('');
+            return;
           }
-        };
+          const data = await response.json();
+          setPublicIPV4(data.ip || data.ipv4 || '');
+          setPublicIPV6(data.ipv6 || data.ip || '');
+        } catch (e) {
+          setPublicIPV4('');
+          setPublicIPV6('');
+        }
+      };
+      fetchData();
+    }, []);
       fetchData();
     }, []);
   
