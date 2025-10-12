@@ -33,7 +33,11 @@ export default function DialogResults(props: ResultsCardProps) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getIndexedDBData(props.id);
+      let data = await getIndexedDBData(props.id);
+      // If the record wasn't found, ensure we have an object to work with
+      if (!data) {
+        data = {} as any;
+      }
       // if any props are missing, set them to 'not available' for each field
       if (!data.location) {
         data.location = {
