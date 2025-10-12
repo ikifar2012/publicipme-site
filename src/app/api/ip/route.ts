@@ -21,17 +21,8 @@ export async function GET(request: Request) {
     let ipv6 = 'unknown'
     try {
       const resp = await fetch('https://ip-worker.steplock.workers.dev/api/ip/v6')
-      if (resp.ok) {
-        // Some IP services return JSON { ip: '...' } — handle both JSON and plain text
-        const contentType = resp.headers.get('content-type') || ''
-        if (contentType.includes('application/json')) {
-          const data = await resp.json()
-          ipv6 = data.ipv6 || 'unknown'
-        } else {
-          const text = await resp.text()
-          ipv6 = text || 'unknown'
-        }
-      }
+      const respv6 = await resp.json()
+      ipv6 = respv6.ipv6 || 'unknown'
     } catch (e) {
       // network failure — leave ipv6 as 'unknown'
     }
