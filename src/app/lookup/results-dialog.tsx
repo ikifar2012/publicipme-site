@@ -83,7 +83,7 @@ export default function DialogResults(props: ResultsCardProps) {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={closeDialog}>
-        <DialogContent className="lg:max-w-4xl overflow-y-auto max-h-screen max-w-screen-sm mb-10 mt-10">
+        <DialogContent className="lg:max-w-4xl overflow-y-auto max-h-screen max-w-(--breakpoint-sm) mb-10 mt-10">
           <DialogHeader>
             <DialogTitle>Results</DialogTitle>
             <DialogDescription>
