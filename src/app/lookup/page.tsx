@@ -13,20 +13,28 @@ export default function Page() {
     const [publicIPV4, setPublicIPV4] = useState('');
     useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        setPublicIPV4(data.ip);
-      };
+          try {
+            const response = await fetch('/api/ip');
+            const data = await response.json();
+            setPublicIPV4(data.ip || '');
+          } catch (e) {
+            setPublicIPV4('');
+          }
+        };
       fetchData();
     }, []);
   
     const [publicIPV6, setPublicIPV6] = useState('');
     useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch('https://api64.ipify.org?format=json');
-        const data = await response.json();
-        setPublicIPV6(data.ip);
-      };
+          try {
+            const response = await fetch('/api/ip');
+            const data = await response.json();
+            setPublicIPV6(data.ip || '');
+          } catch (e) {
+            setPublicIPV6('');
+          }
+        };
       fetchData();
     }, []);
 
