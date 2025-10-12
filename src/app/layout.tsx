@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
     <SpeedInsights/>
-      <body className="bg-linear-to-b from-purple-900 via-slate-950 to-blue-950 transition-all duration-1000 ease-in-out">
+      <body className="bg-gradient-to-b from-purple-900 via-slate-950 to-blue-950 transition-all duration-1000 ease-in-out">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ResultsProvider>
           <SiteNavigationMenu />
