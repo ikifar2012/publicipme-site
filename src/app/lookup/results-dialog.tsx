@@ -33,7 +33,11 @@ export default function DialogResults(props: ResultsCardProps) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getIndexedDBData(props.id);
+      let data = await getIndexedDBData(props.id);
+      // If the record wasn't found, ensure we have an object to work with
+      if (!data) {
+        data = {} as any;
+      }
       // if any props are missing, set them to 'not available' for each field
       if (!data.location) {
         data.location = {
@@ -83,7 +87,7 @@ export default function DialogResults(props: ResultsCardProps) {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={closeDialog}>
-        <DialogContent className="lg:max-w-4xl overflow-y-auto max-h-screen max-w-screen-sm mb-10 mt-10">
+        <DialogContent className="lg:max-w-4xl overflow-y-auto max-h-screen max-w-(--breakpoint-sm) mb-10 mt-10">
           <DialogHeader>
             <DialogTitle>Results</DialogTitle>
             <DialogDescription>
