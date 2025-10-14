@@ -1,46 +1,49 @@
 /* styles/MenuBar.module.css */
 
 .menuBar {
-    /* background-color: #101010; Adjust the alpha value for transparency */
-    padding: 20px;
-    backdrop-filter: blur(10px); /* Apply a blur effect to the background */
-    position: sticky;
-    top: 0;
-    left: 5px;
-    right: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 10px;
-    /* z-index: 1000; */
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
-    /* Rounded corners */
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    /* Make menu bar transparent */
-    background-color: rgba(16, 16, 16, 0.532);
-    
-  }
+  /* background-color: #101010; Adjust the alpha value for transparency */
+  --menu-padding-vertical: 20px; /* increased vertical padding */
+  --menu-padding-horizontal: 24px; /* increased horizontal padding */
+  padding: var(--menu-padding-vertical) var(--menu-padding-horizontal);
+  backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+  position: fixed; /* make it float above content */
+  top: 8px; /* closer to top */
+  left: 10px;
+  right: 10px;
+  width: calc(100% - 20px);
+  max-width: none;
+  margin: 0 auto; /* inset a little from the edges */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6); /* stronger shadow for floating look */
+  border-radius: 16px; /* keep rounded but less inset when full-width */
+  background-color: rgba(16, 16, 16, 0.6);
+  backdrop-filter: blur(8px) saturate(120%);
+}
   
-  .menuBar nav {
-    /* Adding a local class to satisfy the pure selector requirement */
-  }
+.menuBar nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menuBar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.menuBar nav ul li {
+  cursor: pointer;
+}
   
-  .menuBar nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    float: left;
-  }
-  
-  .menuBar nav ul li {
-    cursor: pointer;
-  }
-  
-  .menuBar nav ul li a {
+.menuBar nav ul li a {
     text-decoration: none;
     color: #FFFFFF; /* Adjust the color based on your design */
     font-weight: bold;
@@ -51,16 +54,16 @@
   .menuBar nav ul li a:hover {
     color: #828282; /* Adjust the color for the hover state */
   }
-  .socials {
-    display: inline-flex;
-    float: right;
-    text-decoration: none;
-    color: #FFFFFF; /* Adjust the color based on your design */
-    font-weight: bold;
-    transition: color 0.3s ease; 
-    list-style: none;
-    gap: 20px;
-  }
+.socials {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #FFFFFF; /* Adjust the color based on your design */
+  font-weight: bold;
+  transition: color 0.3s ease;
+  list-style: none;
+  gap: 16px;
+}
   .socials a:hover {
     color: #828282; /* Adjust the color for the hover state */
   }
