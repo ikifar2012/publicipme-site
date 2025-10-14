@@ -27,7 +27,7 @@ export default function Home() {
         console.log(response);
         const data = await response.text();
         // prefer IPv4 value, but fall back to any ip field
-        setPublicIPV4(data || data || 'Not available');
+        setPublicIPV4(data || 'Not available');
         setLoadingIPV4(false);
       } catch (e) {
         setPublicIPV4('Not available');

@@ -18,14 +18,14 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/ip');
+        const response = await fetch('https://checkip.amazonaws.com/');
         if (!response.ok) {
           setPublicIPV4('Not available');
           setLoadingIPV4(false);
           return;
         }
-        const data = await response.json();
-        setPublicIPV4(data.ip || data.ipv4 || 'Not available');
+        const data = await response.text();
+        setPublicIPV4(data || 'Not available');
         setLoadingIPV4(false);
       } catch (e) {
         setPublicIPV4('Not available');
