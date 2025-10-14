@@ -212,6 +212,8 @@
     @apply border-border outline-ring/50;
   }
   body {
+    --floating-menu-height: 72px; /* updated approximate height for the taller menu */
+    padding-top: calc(var(--floating-menu-height) + 12px);
     @apply bg-background text-foreground;
   }
 }
