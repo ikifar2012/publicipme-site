@@ -44,7 +44,7 @@
     "cmdk": "^1.1.1",
     "copy-to-clipboard": "^3.3.3",
     "date-fns": "^4.1.0",
-    "dayjs": "^1.11.18",
+    "dayjs": "^1.11.19",
     "embla-carousel-react": "^8.6.0",
     "idb": "^8.0.3",
     "input-otp": "^1.4.2",
